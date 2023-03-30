@@ -1,7 +1,7 @@
-package org.example;
+package org.example.units.Wizards;
 
 public enum SpellBook {
-    fireBallOne(1, 1), fireBallTwo(5, 2), fireBallThree(10, 3),
+    fireBallOne(1, 2), fireBallTwo(5, 3), fireBallThree(10, 5),
     healingOne(1, -1), healingTwo(2, -5), healingThree(3, -10),
     raiseSpiritOne(1, -1), raiseSpiritTwo(2, -2), raiseSpiritThree(3, -3),
     toxicOne(2, 1), shield(5, 10);

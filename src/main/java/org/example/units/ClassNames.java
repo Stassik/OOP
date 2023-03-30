@@ -1,6 +1,6 @@
 package org.example.units;
 
-public enum ClassName {
+public enum ClassNames {
     Разбойник, Копейщик, Арбалетчик, Снайпер, Монах, Маг, Оруженосец;
 
 }

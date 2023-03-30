@@ -1,7 +1,18 @@
-package org.example.units;
+package org.example.units.Shooters;
 
-public class Arbalester extends Shooter{
-    public Arbalester(String name, int x, int y) {
-        super(name, x, y, 100, new int[]{4, 7}, 15, 4, "Арбалетчик", 10, 70);
+import org.example.Names;
+import org.example.units.Shooter;
+
+import java.util.Random;
+
+public class Arbalester extends Shooter {
+    public Arbalester(int x, int y) {
+        super(getName(), x, y, 100, new int[]{4, 7}, 15, 4, "Арбалетчик", 10, 70);}
+
+    @Override
+    public void step() {
+
     }
+
+
 }

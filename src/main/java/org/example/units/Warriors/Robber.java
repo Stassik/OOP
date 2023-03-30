@@ -1,8 +1,15 @@
-package org.example.units;
+package org.example.units.Warriors;
 
-public class Robber extends Warrior{
-    public Robber(String name, int x, int y) {
-        super(name, x, y, 100, new int[]{6, 11}, 20, 1, "Разбойник", 0);
+import org.example.units.Warrior;
+
+public class Robber extends Warrior {
+    public Robber(int x, int y) {
+        super(getName(), x, y, 100, new int[]{6, 11}, 20, 1, "Разбойник", 0);
         maxReserve = 20;
+    }
+
+    @Override
+    public void step() {
+
     }
 }
