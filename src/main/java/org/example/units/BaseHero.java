@@ -21,8 +21,8 @@ public abstract class BaseHero implements GameInterface {
 //        return ;
 //    }
 
-    public BaseHero (String name, int x, int y, float hp, int[] damage, int def, int distance, String className, int reserve) {
-        this.name = name;
+    public BaseHero (int x, int y, float hp, int[] damage, int def, int distance, String className, int reserve) {
+        this.name = getName();
         this.x = x;
         this.y = y;
         this.hp = this.maxHp = hp;
@@ -39,7 +39,7 @@ public abstract class BaseHero implements GameInterface {
         String str = "Я "+name+". Я " + className + "!";
         return str;
     }
-    public static String getName() {
+    private static String getName() {
         return Names.values()[new Random().nextInt(Names.values().length)].toString();
     }
 

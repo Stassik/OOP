@@ -7,12 +7,5 @@ import java.util.Random;
 
 public class Arbalester extends Shooter {
     public Arbalester(int x, int y) {
-        super(getName(), x, y, 100, new int[]{4, 7}, 15, 4, "Арбалетчик", 10, 70);}
-
-    @Override
-    public void step() {
-
-    }
-
-
+        super(x, y, 100, new int[]{4, 7}, 15, 4, "Арбалетчик", 10, 70);}
 }
