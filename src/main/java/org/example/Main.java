@@ -28,7 +28,8 @@ public class Main {
         System.out.println("Команда Тьмы:");
         darkTeam.forEach(n -> System.out.println(n.getInfo()));
 
-        System.out.println("Игрок: " + lightTeam.get(7).getInfo() + " | Ближайший враг: "+ lightTeam.get(7).findEnemy(darkTeam).getInfo());
+        System.out.println("Игрок: " + lightTeam.get(0).getInfo() + " | Ближайший враг: "+ lightTeam.get(0).findEnemy(darkTeam).getInfo());
+        lightTeam.get(0).step(darkTeam);
     }
 
 

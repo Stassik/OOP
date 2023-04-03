@@ -1,5 +1,7 @@
 package org.example.units;
 
+import java.util.ArrayList;
+
 public class Armsman extends  BaseHero{
     //Непонятно откуда беруться у него стрелы и как он их передает... Он куда-то за ними ходит и потом должен дойти до лучника чтобы передать
     //или есть какой-то запас этих стрел и они передаются "по воздуху"?
@@ -8,7 +10,7 @@ public class Armsman extends  BaseHero{
     }
 
     @Override
-    public void step() {
+    public void step(ArrayList<BaseHero> list) {
 
     }
 }
