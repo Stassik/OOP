@@ -10,6 +10,11 @@ public abstract class Shooter extends BaseHero{
 
     @Override
     public void step() {
+        if (hp <= 0 || reserve <= 0) return;
 
     }
+
+
+
+
 }

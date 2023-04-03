@@ -12,13 +12,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Main {
+    public static ArrayList<BaseHero> lightTeam;
+    public static ArrayList<BaseHero> darkTeam;
     public static void main(String[] args) {
 
-        ArrayList<BaseHero> lightTeam;
-        ArrayList<BaseHero> darkTeam;
 
-        lightTeam = generateTeam("lightTeam");
-        darkTeam = generateTeam("darkTeam");
+
+        lightTeam = BaseHero.generateTeam(1);
+        darkTeam = BaseHero.generateTeam(2);
 
 
         System.out.println("Команда Света:");
@@ -26,44 +27,10 @@ public class Main {
         System.out.println();
         System.out.println("Команда Тьмы:");
         darkTeam.forEach(n -> System.out.println(n.getInfo()));
+
+        System.out.println("Игрок: " + lightTeam.get(7).getInfo() + " | Ближайший враг: "+ lightTeam.get(7).findEnemy(darkTeam).getInfo());
     }
 
 
-    private static ArrayList<BaseHero> generateTeam(String team) {
-        ArrayList<BaseHero> units = new ArrayList<>();
-        int minX;
-        int maxX;
-        if (team.contains("lightTeam")) {
-            minX = 1;
-            maxX = 6;
-        } else {
-            minX = 6;
-            maxX = 11;
-        }
-        for (int i = 1; i <= 10; i++ ) {
-            switch (new Random().nextInt(7)) {
-                case 0:
-                    units.add(new Armsman(new Random().nextInt(minX, maxX), new Random().nextInt(11)));
-                    break;
-                case 1:
-                    units.add(new Mage(new Random().nextInt(minX, maxX), new Random().nextInt(11)));
-                    break;
-                case 2:
-                    units.add(new Monk(new Random().nextInt(minX, maxX), new Random().nextInt(11)));
-                    break;
-                case 3:
-                    units.add(new Arbalester(new Random().nextInt(minX, maxX), new Random().nextInt(11)));
-                    break;
-                case 4:
-                    units.add(new Sniper(new Random().nextInt(minX, maxX), new Random().nextInt(11)));
-                    break;
-                case 5:
-                    units.add(new Robber(new Random().nextInt(minX, maxX), new Random().nextInt(11)));
-                    break;
-                default:
-                    units.add(new Spearman(new Random().nextInt(minX, maxX), new Random().nextInt(11)));
-            }
-        }
-        return units;
-    }
+
 }
