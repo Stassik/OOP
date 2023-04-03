@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class BaseHero implements GameInterface {
-    protected String name;       //Имя
+    public String name;       //Имя
     protected String className;   // Имя класса
     protected int x, y;           // Координаты
     float hp, maxHp;             // Запас здоровья / Максимальный (начальный) запас здоровьz
@@ -43,7 +43,7 @@ public abstract class BaseHero implements GameInterface {
     }
     @Override
     public String getInfo() {
-        String str = "Я "+name+". Я " + className + "! Координаты: "+x+" "+y;
+        String str = "Я "+name+". Я " + className + "! Координаты: "+x+" "+y + " Мое здоровье: " + hp + " Мой запас: " + reserve;
         return str;
     }
     private String getName() {
