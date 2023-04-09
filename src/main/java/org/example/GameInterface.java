@@ -3,9 +3,9 @@ package org.example;
 import org.example.units.BaseHero;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.PriorityQueue;
 
 public interface GameInterface {
-    void step(ArrayList<BaseHero> list);
+    void step(ArrayList<BaseHero> enemies, ArrayList<BaseHero> friends);
     String getInfo();
 }
