@@ -58,7 +58,7 @@ public abstract class BaseHero implements GameInterface {
 
     @Override
     public String toString() {
-        String str = className + " " + name + " Координаты: "+x+" "+y + " Здоровье: " + hp + " Запас: " + reserve+ " Статус: " + status;
+        String str = className + " " + name + " Здоровье: " + hp + " Запас: " + reserve+ " Инициатива: " + priority + " Статус: " + status;
         return str;
     }
     @Override
