@@ -6,7 +6,7 @@ import java.util.Random;
 public abstract class Shooter extends BaseHero{
     int accuracy;
     public Shooter(int x, int y, float hp, int[] damage, int def, int distance, String className, int reserve, int accuracy, int priority, String status) {
-        super(x, y, hp, damage, def, distance, className, reserve, priority, status);
+        super(x, y, hp, damage, def, distance, className, reserve, priority, status, '\u2909');
         this.accuracy = accuracy;
 
     }

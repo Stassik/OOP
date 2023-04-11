@@ -26,6 +26,7 @@ public abstract class BaseHero implements GameInterface {
     int priority; // Приоритет
 
     public String status;
+    public char mark;
 
     protected int reserve, maxReserve;        // Думаю можно объединить стрелы (для арбалетчика и снайпера), ману (для мага и монаха) и боевой дух (для вора и копейщика)
 
@@ -34,7 +35,7 @@ public abstract class BaseHero implements GameInterface {
 //        return ;
 //    }
 
-    public BaseHero (int x, int y, float hp, int[] damage, int def, int distance, String className, int reserve, int priority, String status) {
+    public BaseHero (int x, int y, float hp, int[] damage, int def, int distance, String className, int reserve, int priority, String status, char mark) {
         this.name = getName();
         this.x = x;
         this.y = y;
@@ -46,13 +47,13 @@ public abstract class BaseHero implements GameInterface {
         this.reserve = this.maxReserve = reserve;
         this.priority = priority;
         this.status = status;
+        this.mark = mark;
 
 
     }
     @Override
-    public String getInfo() {
-        String str = className;
-        return str;
+    public char getInfo() {
+        return this.mark;
     }
 
     @Override
@@ -60,40 +61,51 @@ public abstract class BaseHero implements GameInterface {
         String str = className + " " + name + " Координаты: "+x+" "+y + " Здоровье: " + hp + " Запас: " + reserve+ " Статус: " + status;
         return str;
     }
+    @Override
+    public float getHp() {
+        return this.hp;
+    }
+
+    @Override
+    public int[] getCoords() {
+        int[] pos = new int[]{this.x, this.y};
+        return pos;
+    }
+
     private String getName() {
         return Names.values()[new Random().nextInt(Names.values().length)].toString();
     }
     public static ArrayList<BaseHero> generateTeam(int team) {
         ArrayList<BaseHero> units = new ArrayList<>();
-        int posX;
+        int posY;
         if (team == 1) {
-            posX = 0;
+            posY = 1;
 
         } else {
-            posX = 9;
+            posY = 10;
         }
-        for (int i = 0; i < 10; i++ ) {
+        for (int i = 1; i < 11; i++ ) {
             switch (new Random().nextInt(7)) {
                 case 0:
-                    units.add(new Armsman(posX, i));
+                    units.add(new Armsman(i, posY));
                     break;
                 case 1:
-                    units.add(new Mage(posX, i));
+                    units.add(new Mage(i, posY));
                     break;
                 case 2:
-                    units.add(new Monk(posX, i));
+                    units.add(new Monk(i, posY));
                     break;
                 case 3:
-                    units.add(new Arbalester(posX, i));
+                    units.add(new Arbalester(i, posY));
                     break;
                 case 4:
-                    units.add(new Sniper(posX, i));
+                    units.add(new Sniper(i, posY));
                     break;
                 case 5:
-                    units.add(new Robber(posX, i));
+                    units.add(new Robber(i, posY));
                     break;
                 default:
-                    units.add(new Spearman(posX, i));
+                    units.add(new Spearman(i, posY));
             }
         }
         return units;
@@ -130,15 +142,13 @@ public abstract class BaseHero implements GameInterface {
         PriorityQueue<BaseHero> sortedList = new PriorityQueue<>(new Comparator<BaseHero>() {
             @Override
             public int compare(BaseHero o1, BaseHero o2) {
-                if (o1.hp > 0 || o2.hp > 0) {
-                    if (o1.priority == o2.priority) {
-                        int per2 = (int) (o2.hp*100/(o2.maxHp));
-                        int per1 = (int) (o1.hp*100/(o1.maxHp));
-                        return per2 - per1;
-                    }
-                    return o2.priority - o1.priority;
-                }
-            return 0;
+               if (o1.priority == o2.priority) {
+                   int per2 = (int) (o2.hp*100/(o2.maxHp));
+                   int per1 = (int) (o1.hp*100/(o1.maxHp));
+                   return per2 - per1;
+               } else {
+                   return o2.priority - o1.priority;
+               }
             }
         });
         sortedList.addAll(enemies);
