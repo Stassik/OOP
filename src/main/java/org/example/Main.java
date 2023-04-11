@@ -24,10 +24,10 @@ public class Main {
 //            input.nextLine();
             for (BaseHero unit : allTeam) {
                 if (holyTeam.contains(unit)) {
-                    System.out.println("Игрок: " + unit.toString() + " | Ближайший враг: " + unit.findEnemy(holyTeam).toString());
+//                    System.out.println("Игрок: " + unit.toString() + " | Ближайший враг: " + unit.findEnemy(holyTeam).toString());
                     unit.step(darkTeam, holyTeam);
                 } else {
-                    System.out.println("Игрок: " + unit.toString() + " | Ближайший враг: " + unit.findEnemy(holyTeam).toString());
+//                    System.out.println("Игрок: " + unit.toString() + " | Ближайший враг: " + unit.findEnemy(holyTeam).toString());
                     unit.step(holyTeam, darkTeam);
                 }
             }
