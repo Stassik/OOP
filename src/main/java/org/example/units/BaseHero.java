@@ -102,11 +102,11 @@ public abstract class BaseHero implements GameInterface {
     }
 
 
-    public BaseHero findEnemy(ArrayList<BaseHero> enemies) {
+    protected BaseHero findHero(ArrayList<BaseHero> heroes) {
         double minDist = 10;//Math.sqrt((enemies.get(0).pos.x - this.pos.x) * (enemies.get(0).pos.x - this.pos.x) + (enemies.get(0).pos.y - this.pos.y) * (enemies.get(0).pos.y - this.pos.y));
         double dist;
         BaseHero closestUnit = null;
-        for (BaseHero unit: enemies) {
+        for (BaseHero unit: heroes) {
             if (!unit.status.equals("died")) {
                 dist = Math.sqrt((unit.pos.x - this.pos.x) * (unit.pos.x - this.pos.x) + (unit.pos.y - this.pos.y) * (unit.pos.y - this.pos.y));
                 if (dist < minDist) {

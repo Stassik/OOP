@@ -11,7 +11,7 @@ public abstract class Warrior extends BaseHero{
     @Override
     public void step(ArrayList<BaseHero> enemies, ArrayList<BaseHero> friends,PriorityQueue<BaseHero> allTeam) {
         if (!this.status.equals("died")){
-            BaseHero enemy = findEnemy(enemies);
+            BaseHero enemy = findHero(enemies);
             if (enemy != null) {
                 double dist = Math.sqrt((enemy.pos.x - this.pos.x) * (enemy.pos.x - this.pos.x) + (enemy.pos.y - this.pos.y) * (enemy.pos.y - this.pos.y));
                 if (dist <= this.distance) {

@@ -10,29 +10,29 @@ public class Position {
         this.y = y;
     }
 
-    protected void changePosition(BaseHero enemy, BaseHero unit, PriorityQueue<BaseHero> allTeam) {
-        if (enemy.pos.y > unit.pos.y) {
-            if (checkingForEmptinessY(unit.pos, allTeam, 1)) {
-                unit.pos.y++;
+    protected void changePosition(BaseHero unit, BaseHero hero, PriorityQueue<BaseHero> allTeam) {
+        if (unit.pos.y > hero.pos.y) {
+            if (checkingForEmptinessY(hero.pos, allTeam, 1)) {
+                hero.pos.y++;
             } else {
-                changePositionX(enemy, unit, allTeam);
+                changePositionX(unit, hero, allTeam);
             }
-        } else if (enemy.pos.y < unit.pos.y) {
-            if (checkingForEmptinessY(unit.pos, allTeam, -1)) {
-                unit.pos.y--;
+        } else if (unit.pos.y < hero.pos.y) {
+            if (checkingForEmptinessY(hero.pos, allTeam, -1)) {
+                hero.pos.y--;
             } else {
-                changePositionX(enemy, unit, allTeam);
+                changePositionX(unit, hero, allTeam);
             }
         } else {
-            changePositionX(enemy, unit, allTeam);
+            changePositionX(unit, hero, allTeam);
         }
     }
 
-    private void changePositionX(BaseHero enemy, BaseHero unit, PriorityQueue<BaseHero> allTeam) {
-        if (enemy.pos.x > unit.pos.x && checkingForEmptinessX(unit.pos, allTeam, 1)) {
-            unit.pos.x++;
-        } else if (enemy.pos.x < unit.pos.x && checkingForEmptinessX(unit.pos, allTeam, -1)) {
-            unit.pos.x--;
+    private void changePositionX(BaseHero unit, BaseHero hero, PriorityQueue<BaseHero> allTeam) {
+        if (unit.pos.x > hero.pos.x && checkingForEmptinessX(hero.pos, allTeam, 1)) {
+            hero.pos.x++;
+        } else if (unit.pos.x < hero.pos.x && checkingForEmptinessX(hero.pos, allTeam, -1)) {
+            hero.pos.x--;
         }
     }
 
