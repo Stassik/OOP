@@ -17,7 +17,7 @@ import java.util.Random;
 public abstract class BaseHero implements GameInterface {
     public String name;       //Имя
     protected String className;   // Имя класса
-    protected int x, y;           // Координаты
+    protected Position pos;           // Координаты
     protected float hp, maxHp;             // Запас здоровья / Максимальный (начальный) запас здоровьz
     protected int[] damage;       // Минимальная и максимальная сила удара
     protected int def;            // Броня
@@ -29,16 +29,10 @@ public abstract class BaseHero implements GameInterface {
     public char mark;
 
     protected int reserve, maxReserve;        // Думаю можно объединить стрелы (для арбалетчика и снайпера), ману (для мага и монаха) и боевой дух (для вора и копейщика)
-
-//    @Override
-//    public String toString() {
-//        return ;
-//    }
+    public int[] getCoords() {return new int[]{pos.x, pos.y};}
 
     public BaseHero (int x, int y, float hp, int[] damage, int def, int distance, String className, int reserve, int priority, String status, char mark) {
         this.name = getName();
-        this.x = x;
-        this.y = y;
         this.hp = this.maxHp = hp;
         this.damage = damage;
         this.def = def;
@@ -48,6 +42,7 @@ public abstract class BaseHero implements GameInterface {
         this.priority = priority;
         this.status = status;
         this.mark = mark;
+        pos = new Position(x, y);
 
 
     }
@@ -58,7 +53,7 @@ public abstract class BaseHero implements GameInterface {
 
     @Override
     public String toString() {
-        String str = className + " " + name + " Здоровье: " + hp + " Запас: " + reserve+ " Инициатива: " + priority + " Статус: " + status;
+        String str = className + " " + name + " Здоровье: " + hp + " Запас: " + reserve+ " Инициатива: " + priority + " Статус: " + status+ " Позиция: " + pos.x + " " + pos.y;
         return str;
     }
     @Override
@@ -66,11 +61,6 @@ public abstract class BaseHero implements GameInterface {
         return this.hp;
     }
 
-    @Override
-    public int[] getCoords() {
-        int[] pos = new int[]{this.x, this.y};
-        return pos;
-    }
 
     private String getName() {
         return Names.values()[new Random().nextInt(Names.values().length)].toString();
@@ -111,48 +101,43 @@ public abstract class BaseHero implements GameInterface {
         return units;
     }
 
+
     public BaseHero findEnemy(ArrayList<BaseHero> enemies) {
-        double minDist = Math.sqrt((enemies.get(0).x - this.x) * (enemies.get(0).x - this.x) + (enemies.get(0).y - this.y) * (enemies.get(0).y - this.y));
+        double minDist = 10;//Math.sqrt((enemies.get(0).pos.x - this.pos.x) * (enemies.get(0).pos.x - this.pos.x) + (enemies.get(0).pos.y - this.pos.y) * (enemies.get(0).pos.y - this.pos.y));
         double dist;
-        BaseHero closestUnit = enemies.get(0);
+        BaseHero closestUnit = null;
         for (BaseHero unit: enemies) {
-            if (unit.status.equals("died")) continue;
-            else {
-                dist = Math.sqrt((unit.x - this.x) * (unit.x - this.x) + (unit.y - this.y) * (unit.y - this.y));
+            if (!unit.status.equals("died")) {
+                dist = Math.sqrt((unit.pos.x - this.pos.x) * (unit.pos.x - this.pos.x) + (unit.pos.y - this.pos.y) * (unit.pos.y - this.pos.y));
                 if (dist < minDist) {
                     minDist = dist;
                     closestUnit = unit;
                 }
             }
         }
+
         if (closestUnit == null) return null;
         return closestUnit;
     }
 
-//    protected void died (ArrayList <BaseHero> enemies) {
-//        for (BaseHero unit: enemies) {
-//            if (unit.hp <= 0) {
-//                enemies.remove(unit);
-//            }
-//        }
-//    }
-
     public static PriorityQueue<BaseHero> sortedPriority(ArrayList<BaseHero> enemies, ArrayList<BaseHero> friends) {
-
         PriorityQueue<BaseHero> sortedList = new PriorityQueue<>(new Comparator<BaseHero>() {
             @Override
             public int compare(BaseHero o1, BaseHero o2) {
-               if (o1.priority == o2.priority) {
-                   int per2 = (int) (o2.hp*100/(o2.maxHp));
-                   int per1 = (int) (o1.hp*100/(o1.maxHp));
-                   return per2 - per1;
-               } else {
-                   return o2.priority - o1.priority;
-               }
+                if (o1.priority == o2.priority) {
+                    int per2 = (int) (o2.hp * 100 / (o2.maxHp));
+                    int per1 = (int) (o1.hp * 100 / (o1.maxHp));
+                    return per2 - per1;
+                } else {
+                    return o2.priority - o1.priority;
+                }
             }
         });
+
+
         sortedList.addAll(enemies);
         sortedList.addAll(friends);
+
         return sortedList;
     }
 
@@ -162,7 +147,4 @@ public abstract class BaseHero implements GameInterface {
         }
         return false;
     }
-
-
-
 }

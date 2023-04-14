@@ -51,10 +51,10 @@ public class View {
         System.out.print("_".repeat(l[0]*2));
         System.out.println("");
         System.out.print(top10 + "    ");
-        System.out.print("Blue side");
+        System.out.print(AnsiColors.ANSI_BLUE + "Команда Света:" + AnsiColors.ANSI_RESET);
         //for (int i = 0; i < l[0]-9; i++)
-        System.out.print(" ".repeat(l[0]-9));
-        System.out.println(":\tGreen side");
+        System.out.print(" ".repeat(l[0]-14));
+        System.out.println(":\t" + AnsiColors.ANSI_GREEN + "Команда Тьмы:" + AnsiColors.ANSI_RESET);
         for (int i = 1; i < 11; i++) {
             System.out.print(getChar(1, i));
         }

@@ -1,6 +1,7 @@
 package org.example.units;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class Armsman extends  BaseHero{
     //Непонятно откуда беруться у него стрелы и как он их передает... Он куда-то за ними ходит и потом должен дойти до лучника чтобы передать
@@ -10,7 +11,7 @@ public class Armsman extends  BaseHero{
     }
 
     @Override
-    public void step(ArrayList<BaseHero> enemies, ArrayList<BaseHero> friends) {
+    public void step(ArrayList<BaseHero> enemies, ArrayList<BaseHero> friends, PriorityQueue<BaseHero> allTeam) {
 
 
     }
